@@ -3,13 +3,8 @@ const book = document.getElementById('book__container');
 const singleBook = document.createElement('div');
 singleBook.classList.add('book');
 const formOne = document.getElementById('form__one');
-const addButton = document.getElementById('add__button');
 const inputBookTitle = document.getElementById('input__title');
 const inputAuthor = document.getElementById('input__author');
-const myLocalStorage = localStorage.getItem('data');
-
-// Array Stored book
-let storedBook = [];
 
 // Array of Objects
 const bookCollection = localStorage.getItem('bookCollection')
@@ -22,21 +17,20 @@ const bookCollection = localStorage.getItem('bookCollection')
 function removeBook(b) {
   // Each Book item
   const bookCollectionItem = Array.from(
+    // eslint-disable-next-line comma-dangle
     document.getElementsByClassName('book')
   );
 
   Object.keys(bookCollectionItem).forEach((k) => {
     if (b === k) {
       bookCollectionItem[k].remove();
-
       bookCollection.splice(k, 1);
-
       localStorage.setItem('bookCollection', JSON.stringify(bookCollection));
     }
   });
 }
 
-//render the list of books
+// Render the list of books
 function render() {
   book.innerHTML = '';
 
@@ -51,6 +45,7 @@ function render() {
 
   // Define the remove button after Creation
   const removeButton = Array.from(
+    // eslint-disable-next-line comma-dangle
     document.getElementsByClassName('remove__button')
   );
   Object.keys(removeButton).forEach((removeKey) => {
@@ -60,15 +55,12 @@ function render() {
   }, false);
 }
 
-//to render the saved list on page load
+// To Render the saved file on the Page
 render();
 
-// Create a function to ADD BOOK ####
+// ADD BOOK FUNCTION ####
 function addBook(e) {
   // Save user input to Array Object
-  // if (inputAuthor.value !== '' && inputBookTitle.value !== '') {
-
-  // }
   e.preventDefault();
   bookCollection.push({
     title: inputBookTitle.value,
@@ -76,23 +68,11 @@ function addBook(e) {
   });
 
   localStorage.setItem('bookCollection', JSON.stringify(bookCollection));
-
   render();
+  // Refactoring
+  inputBookTitle.value = '';
+  inputAuthor.value = '';
 }
 
-// Get user data stored
-
-// Add eventListner
-
-// addButton.addEventListener('click', addBook);
-
+// ADD EVENTLISTNER
 formOne.addEventListener('submit', addBook);
-
-// demo Local Storage
-
-// formOne.addEventListener('keyup', () => {
-//   getUserData();
-// });
-// if (myLocalStorage) {
-//   setUserData();
-// }
