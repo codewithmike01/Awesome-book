@@ -16,7 +16,7 @@ body {
   padding: 20px 10px;
 }
 
-h1{
+h1 {
   text-align: center;
   margin-bottom: 25px;
 }
@@ -85,78 +85,76 @@ button:active {
   transform: scale(0.95);
 }
 
-
-nav{
+nav {
   width: 100%;
   max-width: 1024px;
   margin-bottom: 40px;
-  border: 2px solid  #000;
+  border: 2px solid #000;
   padding: 8px 15px;
 }
 
-.inner__nav{
- width: 100%;
+.inner__nav {
+  width: 100%;
   display: flex;
   align-items: center;
-justify-content: space-between;
+  justify-content: space-between;
 }
 
-.list{
+.list {
   display: flex;
   align-items: center;
   gap: 20px;
   font-weight: bold;
 }
 
-.list__item, 
-.add__item{
+.list__item,
+.add__item {
   border-right: 2px solid #000;
-  padding-right:10px ;
+  padding-right: 10px;
 }
 
-.list__item, 
+.list__item,
 .add__item,
-.contact__item{
+.contact__item {
   cursor: pointer;
 }
 
-footer{
+footer {
   border: 2px solid #000;
   width: 100%;
-   margin-top: 40px;
-   padding: 10px 15px;
-   font-weight: bold;
+  margin-top: 40px;
+  padding: 10px 15px;
+  font-weight: bold;
 }
 
-.contact{
+.contact {
   margin-top: 40px;
   width: 90%;
   max-width: 1024px;
   display: flex;
   flex-direction: column;
- 
 }
 
-.contact ul{
+.contact ul {
   width: 80%;
   margin: 0 auto;
 }
 
-.contact__info{
+.contact__info {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.date{
+.date {
   margin-bottom: 40px;
   font-size: 0.8em;
 }
 
-.active{
+.active {
   color: rgb(34, 127, 214);
 }
 
-.hide__content{
+.hide__content {
   display: none;
 }
