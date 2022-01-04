@@ -6,39 +6,47 @@ const formOne = document.getElementById('form__one');
 const inputBookTitle = document.getElementById('input__title');
 const inputAuthor = document.getElementById('input__author');
 
-// Array of Objects
-const bookCollection = localStorage.getItem('bookCollection')
-  ? JSON.parse(localStorage.getItem('bookCollection'))
-  : [];
+// USE CLASSES
+class BookClass {
+  constructor() {
+    this.list = localStorage.getItem('bookCollection')
+      ? JSON.parse(localStorage.getItem('bookCollection'))
+      : [];
+  }
 
-// Use array.push({})
+  addBook() {
+    // Save user input to Array Object
+    this.list.push({
+      title: inputBookTitle.value,
+      author: inputAuthor.value,
+    });
+    localStorage.setItem('bookCollection', JSON.stringify(this.list));
 
-// REMOVE BOOK ####
-function removeBook(b) {
-  // Each Book item
-  const bookCollectionItem = Array.from(
-    // eslint-disable-next-line comma-dangle
-    document.getElementsByClassName('book')
-  );
+    // Refactoring
+    inputBookTitle.value = '';
+    inputAuthor.value = '';
+  }
 
-  Object.keys(bookCollectionItem).forEach((k) => {
-    if (b === k) {
-      bookCollectionItem[k].remove();
-      bookCollection.splice(k, 1);
-      localStorage.setItem('bookCollection', JSON.stringify(bookCollection));
-    }
-  });
+  removeBook(b) {
+    // Parent Node with an ID of Book__title
+    const title = b.querySelector('#book__title').innerText;
+    b.remove();
+    this.list = this.list.filter((book) => book.title !== title);
+
+    localStorage.setItem('bookCollection', JSON.stringify(this.list));
+  }
 }
 
-// Render the list of books
+const BookInventory = new BookClass();
+
+// Render the LIST OF BOOKS
 function render() {
   book.innerHTML = '';
 
-  bookCollection.forEach((currentBook) => {
-    singleBook.innerHTML = `<p id="book__title">${currentBook.title}</p>
-    <p id="book__aurthor">${currentBook.author}</p>
-    <button type="button" class="remove__button">Remove</button>
-    <hr />`;
+  BookInventory.list.forEach((currentBook) => {
+    singleBook.innerHTML = `
+    <p id="book__aurthor">"<span id="book__title">${currentBook.title}</span>" ${currentBook.author}</p>
+    <button type="button" class="remove__button">Remove</button>`;
     book.appendChild(singleBook.cloneNode(true));
     bookItems.appendChild(book);
   });
@@ -49,8 +57,9 @@ function render() {
     document.getElementsByClassName('remove__button')
   );
   Object.keys(removeButton).forEach((removeKey) => {
-    removeButton[removeKey].addEventListener('click', () => {
-      removeBook(removeKey);
+    const btn = removeButton[removeKey];
+    btn.addEventListener('click', () => {
+      BookInventory.removeBook(btn.parentNode);
     });
   }, false);
 }
@@ -58,21 +67,9 @@ function render() {
 // To Render the saved file on the Page
 render();
 
-// ADD BOOK FUNCTION ####
-function addBook(e) {
-  // Save user input to Array Object
-  e.preventDefault();
-  bookCollection.push({
-    title: inputBookTitle.value,
-    author: inputAuthor.value,
-  });
-
-  localStorage.setItem('bookCollection', JSON.stringify(bookCollection));
-  render();
-  // Refactoring
-  inputBookTitle.value = '';
-  inputAuthor.value = '';
-}
-
 // ADD EVENTLISTNER
-formOne.addEventListener('submit', addBook);
+formOne.addEventListener('submit', (e) => {
+  e.preventDefault();
+  BookInventory.addBook();
+  render();
+});
