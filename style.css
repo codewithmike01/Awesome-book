@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400&display=swap');
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Comic Neue', cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#book__items {
+  border: 3px #000 solid;
+  margin: 20px 0;
+  width: 100%;
+}
+
+.book {
+  padding: 15px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.book:nth-child(odd) {
+  background-color: #ddd;
+}
+
+button {
+  padding: 5px 10px;
+  border-radius: 0;
+  border: 3px #000 solid;
+  cursor: pointer;
+}
+
+form {
+  margin-top: 10px;
+  width: 50%;
+}
+
+form input {
+  width: 100%;
+  border: 3px #000 solid;
+  padding: 10px;
+  font-family: 'Comic Neue', cursive;
+  font-size: 16px;
+}
+
+form input::placeholder {
+  font-size: 16px;
+  color: #000;
+  opacity: 1;
+}
+
+form button {
+  float: right;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.95);
+}

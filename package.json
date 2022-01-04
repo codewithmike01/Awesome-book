@@ -1,7 +1,24 @@
 {
+<<<<<<< HEAD
   "name": "awesome-book",
   "version": "1.0.0",
   "description": "This is a project as Mandated by Microverse, to create a plain javascript Web app that adds and removes book base on user interaction",
+=======
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.25.4",
+    "hint": "^6.1.9",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^21.0.0",
+    "stylelint-csstree-validator": "^1.9.0",
+    "stylelint-scss": "^3.21.0"
+  },
+  "name": "awesome-book",
+  "description": "This is a project as Mandated by Microverse, to create a plain javascript Web app that adds and removes book base on user interaction",
+  "version": "1.0.0",
+>>>>>>> b95453399aea803049197a803aa8fe734e577593
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,6 +33,7 @@
   "bugs": {
     "url": "https://github.com/Ginohmk/Awesome-book/issues"
   },
+<<<<<<< HEAD
   "homepage": "https://github.com/Ginohmk/Awesome-book#readme",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
@@ -28,4 +46,7 @@
     "stylelint-csstree-validator": "^1.9.0",
     "stylelint-scss": "^3.21.0"
   }
+=======
+  "homepage": "https://github.com/Ginohmk/Awesome-book#readme"
+>>>>>>> b95453399aea803049197a803aa8fe734e577593
 }
