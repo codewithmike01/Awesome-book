@@ -42,10 +42,9 @@ function render() {
   book.innerHTML = '';
 
   bookCollection.forEach((currentBook) => {
-    singleBook.innerHTML = `<p id="book__title">${currentBook.title}</p>
-    <p id="book__aurthor">${currentBook.author}</p>
-    <button type="button" class="remove__button">Remove</button>
-    <hr />`;
+    singleBook.innerHTML = `
+    <p id="book__aurthor">"<span id="book__title">${currentBook.title}</span>" ${currentBook.author}</p>
+    <button type="button" class="remove__button">Remove</button>`;
     book.appendChild(singleBook.cloneNode(true));
     bookItems.appendChild(book);
   });
