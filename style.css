@@ -47,14 +47,6 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  transform: scale(1.05);
-}
-
-button:active {
-  transform: scale(0.95);
-}
-
 form {
   margin-top: 10px;
   width: 50%;
@@ -76,4 +68,12 @@ form input::placeholder {
 
 form button {
   float: right;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.95);
 }
