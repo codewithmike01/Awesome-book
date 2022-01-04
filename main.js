@@ -7,30 +7,37 @@ const inputBookTitle = document.getElementById('input__title');
 const inputAuthor = document.getElementById('input__author');
 
 // Array of Objects
-const bookCollection = localStorage.getItem('bookCollection')
+let bookCollection = localStorage.getItem('bookCollection')
   ? JSON.parse(localStorage.getItem('bookCollection'))
   : [];
 
-// Use array.push({})
+// USE CLASSES
+class BookInventory {
+  static addBook() {
+    // Save user input to Array Object
 
-// REMOVE BOOK ####
-function removeBook(b) {
-  // Each Book item
-  const bookCollectionItem = Array.from(
-    // eslint-disable-next-line comma-dangle
-    document.getElementsByClassName('book')
-  );
+    bookCollection.push({
+      title: inputBookTitle.value,
+      author: inputAuthor.value,
+    });
+    localStorage.setItem('bookCollection', JSON.stringify(bookCollection));
 
-  Object.keys(bookCollectionItem).forEach((k) => {
-    if (b === k) {
-      bookCollectionItem[k].remove();
-      bookCollection.splice(k, 1);
-      localStorage.setItem('bookCollection', JSON.stringify(bookCollection));
-    }
-  });
+    // Refactoring
+    inputBookTitle.value = '';
+    inputAuthor.value = '';
+  }
+
+  static removeBook(b) {
+    // Parent Node with an ID of Book__title
+    const title = b.querySelector('#book__title').innerText;
+    b.remove();
+    bookCollection = bookCollection.filter((book) => book.title !== title);
+
+    localStorage.setItem('bookCollection', JSON.stringify(bookCollection));
+  }
 }
 
-// Render the list of books
+// Render the LIST OF BOOKS
 function render() {
   book.innerHTML = '';
 
@@ -49,8 +56,9 @@ function render() {
     document.getElementsByClassName('remove__button')
   );
   Object.keys(removeButton).forEach((removeKey) => {
-    removeButton[removeKey].addEventListener('click', () => {
-      removeBook(removeKey);
+    const btn = removeButton[removeKey];
+    btn.addEventListener('click', () => {
+      BookInventory.removeBook(btn.parentNode);
     });
   }, false);
 }
@@ -58,21 +66,9 @@ function render() {
 // To Render the saved file on the Page
 render();
 
-// ADD BOOK FUNCTION ####
-function addBook(e) {
-  // Save user input to Array Object
-  e.preventDefault();
-  bookCollection.push({
-    title: inputBookTitle.value,
-    author: inputAuthor.value,
-  });
-
-  localStorage.setItem('bookCollection', JSON.stringify(bookCollection));
-  render();
-  // Refactoring
-  inputBookTitle.value = '';
-  inputAuthor.value = '';
-}
-
 // ADD EVENTLISTNER
-formOne.addEventListener('submit', addBook);
+formOne.addEventListener('submit', (e) => {
+  e.preventDefault();
+  BookInventory.addBook();
+  render();
+});
