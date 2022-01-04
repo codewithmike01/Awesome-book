@@ -7,7 +7,7 @@ const inputBookTitle = document.getElementById('input__title');
 const inputAuthor = document.getElementById('input__author');
 
 // USE CLASSES
-class bookClass {
+class BookClass {
   constructor() {
     this.list = localStorage.getItem('bookCollection')
       ? JSON.parse(localStorage.getItem('bookCollection'))
@@ -37,7 +37,7 @@ class bookClass {
   }
 }
 
-const BookInventory = new bookClass();
+const BookInventory = new BookClass();
 
 // Render the LIST OF BOOKS
 function render() {
